@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>best Jokes
+    </title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+       
+        body{
+            background-color: rgb(52, 128, 153);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            overflow: hidden;
+            margin: 0;
+            padding: 20px;
+        }
+        .container{
+            margin: 31px;
+            padding: 50px 20px;
+            background-color: white;
+            border-radius: 15px;
+            font-style: italic;
+            font-family: cursive;
+            box-shadow: 0 10px 20px 10px;
+            text-align: center;
+            max-width: 100%;
+            width: 800px;
+        }
+        h3{
+            margin: 0;
+            letter-spacing: 2px;
+            text-transform: capitalize;
+            text-align: center;
+            font-weight: 100;
+        }
+        .joke{
+            text-align: center;
+            font-weight: 700;
+            font-size: 30px;
+            letter-spacing: 1px;
+            line-height: 40px;
+            margin: 50px auto;
+            max-width: 600px;
+        }
+        .btn{
+            outline: none;
+            color: white;
+            background-color: orange;
+            border: 0;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px ;
+            size: 500px;
+            padding: 12px 30px;
+            font-size: 18px;
+            cursor: pointer;
+            outline: none;
+
+        }
+        footer{
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" >
+        <h3>
+            😍Best Jokes to make your day😂
+        </h3>
+
+        <div id="joke" class="joke">Awesome joke is loading
+            
+        </div>
+        <button id="jokeBtn" class="btn">Next Joke</button>
+    </div>
+    
+    <script>
+    const jokes = document.querySelector("#joke")
+    const jokeBtn = document.querySelector("#jokeBtn")
+
+    const setHeader =   {
+     headers:{
+         Accept:"application/json"
+     }
+    }
+    
+
+    const generateJokes = () =>{
+        fetch('https://icanhazdadjoke.com',setHeader)
+        .then((resp)=> resp.json())
+        .then((data)=>{
+            jokes.innerHTML=data.joke;
+        })
+        .catch((error)=>{
+            console.log(error);   
+        })
+    }
+    
+    jokeBtn.addEventListener('click',generateJokes);
+    generateJokes();
+        
+
+    </script>
+    <footer>
+        Fetching jokes from API by Meet Vasani&copy; 
+    </footer>    
+</body>
+
+</html>
